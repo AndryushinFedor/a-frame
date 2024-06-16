@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <title>Document</title>
+</head>
+    <body>
+      <a-scene>
+        <!-- Ambient Lighting for daytime -->
+        <a-light type="ambient" color="#ffffff" intensity="0.5"></a-light>
+  
+        <!-- Sunlight -->
+        <a-light type="directional" color="#ffffff" intensity="1" position="1 2 1"></a-light>
+  
+        <!-- Building -->
+        <a-entity gltf-model="url(https://skfb.ly/oEQTo)" position="0 0 -5" scale="1 1 1"></a-entity>
+  
+        <!-- Camera with Look Controls -->
+        <a-entity camera look-controls position="0 1.6 5"></a-entity>
+      </a-scene>
+    </body>  
+  
+</html>
