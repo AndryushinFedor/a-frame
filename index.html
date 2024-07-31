@@ -8,13 +8,33 @@
       AFRAME.registerComponent('button-listener', {
         init: function () {
           const sky = document.querySelector('#sky');
+          let isGradientActive = false;
 
           document.querySelector('#nightButton').addEventListener('click', function () {
             sky.setAttribute('color', '#000022');  // Ночь
+            sky.removeAttribute('animation');  // Отключить градиент
+            isGradientActive = false;
           });
 
           document.querySelector('#dayButton').addEventListener('click', function () {
             sky.setAttribute('color', '#87CEEB');  // День
+            sky.removeAttribute('animation');  // Отключить градиент
+            isGradientActive = false;
+          });
+
+          document.querySelector('#customButton').addEventListener('click', function () {
+            if (isGradientActive) {
+              sky.removeAttribute('animation');  // Остановить градиент
+            } else {
+              sky.setAttribute('animation', {
+                property: 'material.color',
+                to: '#FF69B4',
+                loop: true,
+                dir: 'alternate',
+                dur: 3000
+              });
+            }
+            isGradientActive = !isGradientActive;  // Переключить состояние градиента
           });
 
           document.querySelectorAll('.button').forEach(button => {
@@ -182,9 +202,9 @@
       <a-box position="0 1.25 -5" width="1" height="0.5" depth="0.5" color="#FFD700" id="dayButton" class="button"></a-box>
       <a-text value="Day" align="center" position="0 1.4 -4.7" width="2"></a-text>
       
-      <!-- Кнопка 3: Пока без действия -->
+      <!-- Кнопка 3: Градиент -->
       <a-box position="1.25 1.25 -5" width="1" height="0.5" depth="0.5" color="#32CD32" id="customButton" class="button"></a-box>
-      <a-text value="Custom" align="center" position="1.25 1.4 -4.7" width="2"></a-text>
+      <a-text value="Gradient" align="center" position="1.25 1.4 -4.7" width="2"></a-text>
     </a-scene>
   </body>
 </html>
