@@ -8,6 +8,7 @@
       AFRAME.registerComponent('button-listener', {
         init: function () {
           const sky = document.querySelector('#sky');
+          const leaves = document.querySelectorAll('.leaves');
           let isGradientActive = false;
 
           document.querySelector('#nightButton').addEventListener('click', function () {
@@ -35,6 +36,23 @@
               });
             }
             isGradientActive = !isGradientActive;  // Переключить состояние градиента
+          });
+
+          // Сезонные кнопки
+          document.querySelector('#autumnButton').addEventListener('click', function () {
+            leaves.forEach(leaf => leaf.setAttribute('color', '#FF8C00'));  // Осень: Оранжевый
+          });
+
+          document.querySelector('#winterButton').addEventListener('click', function () {
+            leaves.forEach(leaf => leaf.setAttribute('color', '#FFFFFF'));  // Зима: Белый
+          });
+
+          document.querySelector('#springButton').addEventListener('click', function () {
+            leaves.forEach(leaf => leaf.setAttribute('color', '#00FF7F'));  // Весна: Ярко-зеленый
+          });
+
+          document.querySelector('#summerButton').addEventListener('click', function () {
+            leaves.forEach(leaf => leaf.setAttribute('color', '#228B22'));  // Лето: Зеленый
           });
 
           document.querySelectorAll('.button').forEach(button => {
@@ -77,134 +95,156 @@
         <!-- Тип 1 -->
         <a-entity position="-26 0 -20">
           <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a-box>
-          <a-box position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a-box>
-          <a-box position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a.box>
-          <a-box position="0 2 0" depth="3" height="2" width="3" color="#006400"></a-box>
-          <a-box position="0 2 0" depth="4" height="2" width="4" color="#006400"></a-box>
-          <a-box position="0 2 0" depth="5" height="2" width="5" color="#006400"></a.box>
-          <a-box position="0 2 0" depth="4" height="2" width="4" color="#006400"></a.box>
-          <a-box position="0 2 0" depth="3" height="2" width="3" color="#006400"></a.box>
+          <a-box class="leaves" position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a-box>
+          <a-box class="leaves" position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a.box>
+          <a-box class="leaves" position="0 2 0" depth="3" height="2" width="3" color="#006400"></a-box>
+          <a-box class="leaves" position="0 2 0" depth="4" height="2" width="4" color="#006400"></a-box>
+          <a-box class="leaves" position="0 2 0" depth="5" height="2" width="5" color="#006400"></a.box>
+          <a-box class="leaves" position="0 2 0" depth="4" height="2" width="4" color="#006400"></a.box>
+          <a-box class="leaves" position="0 2 0" depth="3" height="2" width="3" color="#006400"></a.box>
         </a-entity>
 
         <a-entity position="4 0 -26">
           <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a-box>
-          <a-box position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a-box>
-          <a-box position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a.box>
-          <a-box position="0 2 0" depth="3" height="2" width="3" color="#006400"></a.box>
-          <a-box position="0 2 0" depth="4" height="2" width="4" color="#006400"></a.box>
-          <a-box position="0 2 0" depth="5" height="2" width="5" color="#006400"></a.box>
-          <a-box position="0 2 0" depth="4" height="2" width="4" color="#006400"></a.box>
-          <a-box position="0 2 0" depth="3" height="2" width="3" color="#006400"></a.box>
+          <a-box class="leaves" position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a-box>
+          <a-box class="leaves" position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a.box>
+          <a-box class="leaves" position="0 2 0" depth="3" height="2" width="3" color="#006400"></a.box>
+          <a-box class="leaves" position="0 2 0" depth="4" height="2" width="4" color="#006400"></a.box>
+          <a-box class="leaves" position="0 2 0" depth="5" height="2" width="5" color="#006400"></a.box>
+          <a-box class="leaves" position="0 2 0" depth="4" height="2" width="4" color="#006400"></a.box>
+          <a-box class="leaves" position="0 2 0" depth="3" height="2" width="3" color="#006400"></a.box>
         </a-entity>
 
 
         <!-- Тип 2 -->
         <a-entity position="4 0 30">
           <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a-box>
-          <a-box position="0 4 0" depth="1" height="8" width="1" color="#8B4513"></a-box>
-          <a-box position="0 7 0" depth="3" height="6" width="3" color="#228B22"></a.box>
-          <a-box position="0 6 0" depth="4" height="5" width="4" color="#228B22"></a.box>
-          <a-box position="0 5 0" depth="5" height="5" width="5" color="#228B22"></a.box>
-          <a-box position="0 4 0" depth="4" height="4" width="4" color="#228B22"></a.box>
-          <a-box position="0 3 0" depth="3" height="4" width="3" color="#228B22"></a.box>
+          <a-box class="leaves" position="0 4 0" depth="1" height="8" width="1" color="#8B4513"></a-box>
+          <a-box class="leaves" position="0 7 0" depth="3" height="6" width="3" color="#228B22"></a.box>
+          <a-box class="leaves" position="0 6 0" depth="4" height="5" width="4" color="#228B22"></a.box>
+          <a-box class="leaves" position="0 5 0" depth="5" height="5" width="5" color="#228B22"></a.box>
+          <a-box class="leaves" position="0 4 0" depth="4" height="4" width="4" color="#228B22"></a.box>
+          <a-box class="leaves" position="0 3 0" depth="3" height="4" width="3" color="#228B22"></a.box>
         </a-entity>
 
         <!-- Тип 3 -->
         <a-entity position="6 0 -7">
           <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
-          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
-          <a-box position="0 2 0" depth="4" height="2" width="4" color="#2E8B57"></a.box>
-          <a-box position="0 2 0" depth="5" height="2" width="5" color="#2E8B57"></a.box>
-          <a-box position="0 2 0" depth="6" height="2" width="6" color="#2E8B57"></a.box>
-          <a-box position="0 2 0" depth="5" height="2" width="5" color="#2E8B57"></a.box>
-          <a-box position="0 2 0" depth="4" height="2" width="4" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
+          <a-box class="leaves" position="0 2 0" depth="4" height="2" width="4" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 2 0" depth="5" height="2" width="5" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 2 0" depth="6" height="2" width="6" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 2 0" depth="5" height="2" width="5" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 2 0" depth="4" height="2" width="4" color="#2E8B57"></a.box>
         </a-entity>
 
         <!-- Тип 3 -->
         <a-entity position="-5 0 -16">
           <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
-          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
-          <a-box position="0 1 0" depth="4" height="1" width="4" color="#2E8B57"></a.box>
-          <a-box position="0 1 0" depth="5" height="1" width="5" color="#2E8B57"></a.box>
-          <a-box position="0 1 0" depth="6" height="1" width="6" color="#2E8B57"></a.box>
-          <a-box position="0 1 0" depth="5" height="1" width="5" color="#2E8B57"></a.box>
-          <a-box position="0 1 0" depth="4" height="1" width="4" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
+          <a-box class="leaves" position="0 1 0" depth="4" height="1" width="4" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 1 0" depth="5" height="1" width="5" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 1 0" depth="6" height="1" width="6" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 1 0" depth="5" height="1" width="5" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 1 0" depth="4" height="1" width="4" color="#2E8B57"></a.box>
         </a-entity>
 
         <!-- Тип 4 -->
         <a-entity position="30 0 -4">
           <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
-          <a-box position="0 5 0" depth="1" height="12" width="1" color="#8B4513"></a.box>
-          <a-box position="0 9 0" depth="4" height="9" width="4" color="#2E8B57"></a.box>
-          <a-box position="0 8 0" depth="5" height="8" width="5" color="#2E8B57"></a.box>
-          <a-box position="0 7 0" depth="6" height="7" width="6" color="#2E8B57"></a.box>
-          <a-box position="0 6 0" depth="5" height="6" width="5" color="#2E8B57"></a.box>
-          <a-box position="0 5 0" depth="4" height="5" width="4" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 5 0" depth="1" height="12" width="1" color="#8B4513"></a.box>
+          <a-box class="leaves" position="0 9 0" depth="4" height="9" width="4" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 8 0" depth="5" height="8" width="5" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 7 0" depth="6" height="7" width="6" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 6 0" depth="5" height="6" width="5" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 5 0" depth="4" height="5" width="4" color="#2E8B57"></a.box>
         </a-entity>
 
         <!-- Тип 4 -->
         <a-entity position="-12 0 -12">
           <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
-          <a-box position="0 5 0" depth="1" height="12" width="1" color="#8B4513"></a.box>
-          <a-box position="0 9 0" depth="4" height="9" width="4" color="#2E8B57"></a.box>
-          <a-box position="0 8 0" depth="5" height="8" width="5" color="#2E8B57"></a.box>
-          <a-box position="0 7 0" depth="6" height="7" width="6" color="#2E8B57"></a.box>
-          <a-box position="0 6 0" depth="5" height="6" width="5" color="#2E8B57"></a.box>
-          <a-box position="0 5 0" depth="4" height="5" width="4" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 5 0" depth="1" height="12" width="1" color="#8B4513"></a.box>
+          <a-box class="leaves" position="0 9 0" depth="4" height="9" width="4" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 8 0" depth="5" height="8" width="5" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 7 0" depth="6" height="7" width="6" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 6 0" depth="5" height="6" width="5" color="#2E8B57"></a.box>
+          <a-box class="leaves" position="0 5 0" depth="4" height="5" width="4" color="#2E8B57"></a.box>
         </a-entity>
 
 
         <!-- Тип 5 -->
         <a-entity position="40 0 25">
           <a-box position="0 2.5 0" depth="1" height="6" width="1" color="#8B4513"></a.box>
-          <a-box position="0 5.5 0" depth="3" height="5" width="3" color="#006400"></a.box>
-          <a-box position="0 4.5 0" depth="4" height="4" width="4" color="#006400"></a.box>
-          <a-box position="0 3.5 0" depth="5" height="3" width="5" color="#006400"></a.box>
-          <a-box position="0 2.5 0" depth="4" height="4" width="4" color="#006400"></a.box>
+          <a-box class="leaves" position="0 5.5 0" depth="3" height="5" width="3" color="#006400"></a.box>
+          <a-box class="leaves" position="0 4.5 0" depth="4" height="4" width="4" color="#006400"></a.box>
+          <a-box class="leaves" position="0 3.5 0" depth="5" height="3" width="5" color="#006400"></a.box>
+          <a-box class="leaves" position="0 2.5 0" depth="4" height="4" width="4" color="#006400"></a.box>
         </a-entity>
 
         <!-- Тип 5 -->
         <a-entity position="15 0 7">
           <a-box position="0 2.5 0" depth="1" height="6" width="1" color="#8B4513"></a.box>
-          <a-box position="0 5.5 0" depth="3" height="5" width="3" color="#006400"></a.box>
-          <a-box position="0 4.5 0" depth="4" height="4" width="4" color="#006400"></a.box>
-          <a-box position="0 3.5 0" depth="5" height="3" width="5" color="#006400"></a.box>
-          <a-box position="0 2.5 0" depth="4" height="4" width="4" color="#006400"></a.box>
+          <a-box class="leaves" position="0 5.5 0" depth="3" height="5" width="3" color="#006400"></a.box>
+          <a-box class="leaves" position="0 4.5 0" depth="4" height="4" width="4" color="#006400"></a.box>
+          <a-box class="leaves" position="0 3.5 0" depth="5" height="3" width="5" color="#006400"></a.box>
+          <a-box class="leaves" position="0 2.5 0" depth="4" height="4" width="4" color="#006400"></a.box>
         </a-entity>
 
         <!-- Тип 6 -->
         <a-entity position="15 0 -12">
           <a-box position="0 3 0" depth="2" height="7" width="2" color="#8B4513"></a.box>
-          <a-box position="0 6.5 0" depth="6" height="5" width="6" color="#228B22"></a.box>
-          <a-box position="0 5.5 0" depth="5" height="6" width="5" color="#228B22"></a.box>
-          <a-box position="0 4.5 0" depth="4" height="7" width="4" color="#228B22"></a.box>
-          <a-box position="0 3.5 0" depth="3" height="8" width="3" color="#228B22"></a.box>
+          <a-box class="leaves" position="0 6.5 0" depth="6" height="5" width="6" color="#228B22"></a.box>
+          <a-box class="leaves" position="0 5.5 0" depth="5" height="6" width="5" color="#228B22"></a.box>
+          <a-box class="leaves" position="0 4.5 0" depth="4" height="7" width="4" color="#228B22"></a.box>
+          <a-box class="leaves" position="0 3.5 0" depth="3" height="8" width="3" color="#228B22"></a.box>
         </a-entity>
 
         <!-- Тип 6 -->
         <a-entity position="-12 0 4">
           <a-box position="0 3 0" depth="2" height="7" width="2" color="#8B4513"></a.box>
-          <a-box position="0 6.5 0" depth="6" height="5" width="6" color="#228B22"></a.box>
-          <a-box position="0 5.5 0" depth="5" height="6" width="5" color="#228B22"></a.box>
-          <a-box position="0 4.5 0" depth="4" height="7" width="4" color="#228B22"></a.box>
-          <a-box position="0 3.5 0" depth="3" height="8" width="3" color="#228B22"></a.box>
+          <a-box class="leaves" position="0 6.5 0" depth="6" height="5" width="6" color="#228B22"></a.box>
+          <a-box class="leaves" position="0 5.5 0" depth="5" height="6" width="5" color="#228B22"></a.box>
+          <a-box class="leaves" position="0 4.5 0" depth="4" height="7" width="4" color="#228B22"></a.box>
+          <a-box class="leaves" position="0 3.5 0" depth="3" height="8" width="3" color="#228B22"></a.box>
         </a-entity>
       </a-entity>
 
-      <!-- Коробка с кнопками -->
-      <a-box position="0 0 -5" width="4" height="2" depth="2" color="#333"></a-box>
+  <!-- Первая коробка с кнопками -->
+  <a-box position="0 0 -5" width="4" height="2" depth="2" color="#333"></a-box>
 
-      <!-- Кнопка 1: Ночь -->
-      <a-box position="-1.25 1.25 -5" width="1" height="0.5" depth="0.5" color="#1E90FF" id="nightButton" class="button"></a-box>
-      <a-text value="Night" align="center" position="-1.25 1.4 -4.7" width="2"></a-text>
-      
-      <!-- Кнопка 2: День -->
-      <a-box position="0 1.25 -5" width="1" height="0.5" depth="0.5" color="#FFD700" id="dayButton" class="button"></a-box>
-      <a-text value="Day" align="center" position="0 1.4 -4.7" width="2"></a-text>
-      
-      <!-- Кнопка 3: Градиент -->
-      <a-box position="1.25 1.25 -5" width="1" height="0.5" depth="0.5" color="#32CD32" id="customButton" class="button"></a-box>
-      <a-text value="Gradient" align="center" position="1.25 1.4 -4.7" width="2"></a-text>
+  <!-- Кнопка 1: Ночь -->
+  <a-box position="-1.25 1.25 -5" width="1" height="0.5" depth="0.5" color="#1E90FF" id="nightButton" class="button"></a-box>
+  <a-text value="Night" align="center" position="-1.25 1.4 -4.7" width="2"></a-text>
+  
+  <!-- Кнопка 2: День -->
+  <a-box position="0 1.25 -5" width="1" height="0.5" depth="0.5" color="#FFD700" id="dayButton" class="button"></a-box>
+  <a-text value="Day" align="center" position="0 1.4 -4.7" width="2"></a-text>
+  
+  <!-- Кнопка 3: Градиент -->
+  <a-box position="1.25 1.25 -5" width="1" height="0.5" depth="0.5" color="#32CD32" id="customButton" class="button"></a-box>
+  <a-text value="Gradient" align="center" position="1.25 1.4 -4.7" width="2"></a-text>
+
+  <!-- Вторая коробка с четырьмя кнопками -->
+  <a-box position="6 0 0" width="6" height="2" depth="2" color="#333" rotation="0 90 0"></a-box>
+
+<!-- Кнопка 1: Осень -->
+      <a-box position="6 1.25 1.25" width="1" height="0.5" depth="0.5" color="#FF8C00" id="autumnButton" class="button"></a-box>
+      <a-text value="Autumn" align="center" position="6 1.4 1.55" width="2"></a-text>
+
+      <!-- Кнопка 2: Весна -->
+      <a-box position="6 1.25 0.25" width="1" height="0.5" depth="0.5" color="#00FF7F" id="springButton" class="button"></a-box>
+      <a-text value="Spring" align="center" position="6 1.4 0.55" width="2"></a-text>
+
+      <!-- Кнопка 3: Лето -->
+      <a-box position="6 1.25 -0.75" width="1" height="0.5" depth="0.5" color="#228B22" id="summerButton" class="button"></a-box>
+      <a-text value="Summer" align="center" position="6 1.4 -0.45" width="2"></a-text>
+
+      <!-- Кнопка 4: Зима -->
+      <a-box position="6 1.25 -1.75" width="1" height="0.5" depth="0.5" color="#FFFFFF" id="winterButton" class="button"></a-box>
+      <a-text value="Winter" align="center" position="6 1.4 -1.45" width="2"></a-text>
+
     </a-scene>
-  </body>
+
+</a-scene>
+</body>
 </html>
