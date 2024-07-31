@@ -9,23 +9,24 @@
         init: function () {
           const sky = document.querySelector('#sky');
           const leaves = document.querySelectorAll('.leaves');
+          const grass = document.querySelector('#grass'); // Reference to the grass
           let isGradientActive = false;
 
           document.querySelector('#nightButton').addEventListener('click', function () {
-            sky.setAttribute('color', '#000022');  // Ночь
-            sky.removeAttribute('animation');  // Отключить градиент
+            sky.setAttribute('color', '#000022');  // Night
+            sky.removeAttribute('animation');  // Gradient off
             isGradientActive = false;
           });
 
           document.querySelector('#dayButton').addEventListener('click', function () {
-            sky.setAttribute('color', '#87CEEB');  // День
-            sky.removeAttribute('animation');  // Отключить градиент
+            sky.setAttribute('color', '#87CEEB');  // Day
+            sky.removeAttribute('animation');  // Gradient Off
             isGradientActive = false;
           });
 
           document.querySelector('#customButton').addEventListener('click', function () {
             if (isGradientActive) {
-              sky.removeAttribute('animation');  // Остановить градиент
+              sky.removeAttribute('animation');  // Gradient Off
             } else {
               sky.setAttribute('animation', {
                 property: 'material.color',
@@ -35,12 +36,12 @@
                 dur: 3000
               });
             }
-            isGradientActive = !isGradientActive;  // Переключить состояние градиента
+            isGradientActive = !isGradientActive;  // Gradient State Change
           });
 
-          // Функция для генерации случайного цвета на основе базового цвета
+          // Random base colour
           function getRandomColor(baseColor) {
-            let colorVariation = 30; // Варьировать цвет на ±30 для каждого канала RGB
+            let colorVariation = 30; // RGB Shades
             let base = parseInt(baseColor.slice(1), 16);
             let r = Math.min(255, Math.max(0, (base >> 16) + Math.floor(Math.random() * colorVariation * 2) - colorVariation));
             let g = Math.min(255, Math.max(0, ((base >> 8) & 0xFF) + Math.floor(Math.random() * colorVariation * 2) - colorVariation));
@@ -48,21 +49,25 @@
             return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
           }
 
-          // Сезонные кнопки
+          // Season button
           document.querySelector('#autumnButton').addEventListener('click', function () {
-            leaves.forEach(leaf => leaf.setAttribute('color', getRandomColor('#FF8C00')));  // Осень: Рандомный оттенок оранжевого
+            leaves.forEach(leaf => leaf.setAttribute('color', getRandomColor('#FF8C00')));  // Autumn: Random Orange Shade
+            grass.setAttribute('color', getRandomColor('#A0522D'));  // Brownish grass for autumn
           });
 
           document.querySelector('#winterButton').addEventListener('click', function () {
-            leaves.forEach(leaf => leaf.setAttribute('color', getRandomColor('#FFFFFF')));  // Зима: Рандомный оттенок белого
+            leaves.forEach(leaf => leaf.setAttribute('color', getRandomColor('#FFFFFF')));  // Winter: Random White Shade
+            grass.setAttribute('color', getRandomColor('#D3D3D3'));  // Light grey grass for winter
           });
 
           document.querySelector('#springButton').addEventListener('click', function () {
-            leaves.forEach(leaf => leaf.setAttribute('color', getRandomColor('#00FF7F')));  // Весна: Рандомный оттенок ярко-зеленого
+            leaves.forEach(leaf => leaf.setAttribute('color', getRandomColor('#00FF7F')));  // Spring: Random Green Shade
+            grass.setAttribute('color', getRandomColor('#7CFC00'));  // Light green grass for spring
           });
 
           document.querySelector('#summerButton').addEventListener('click', function () {
-            leaves.forEach(leaf => leaf.setAttribute('color', getRandomColor('#228B22')));  // Лето: Рандомный оттенок зеленого
+            leaves.forEach(leaf => leaf.setAttribute('color', getRandomColor('#228B22')));  // Summer: Random Dark Green Shade
+            grass.setAttribute('color', getRandomColor('#228B22'));  // Dark green grass for summer
           });
 
           document.querySelectorAll('.button').forEach(button => {
@@ -87,26 +92,26 @@
   </head>
   <body>
     <a-scene button-listener>
-      <!-- Камера с контроллерами движения и курсором -->
+      <!-- Camera -->
       <a-entity camera position="0 1.6 0" wasd-controls look-controls>
         <a-cursor></a-cursor>
       </a-entity>
       
-      <!-- Небо -->
+      <!-- Sky -->
       <a-sky id="sky" color="#87CEEB"></a-sky>
       
-      <!-- Трава -->
-      <a-plane position="0 0 0" rotation="-90 0 0" width="100" height="100" color="#228B22"></a-plane>
+      <!-- Grass -->
+      <a-plane id="grass" position="0 0 0" rotation="-90 0 0" width="100" height="100" color="#228B22"></a-plane>
 
-      <!-- Террейн -->
+      <!-- Terrain -->
       <a-entity id="terrain">
 
-      <!-- Три типа деревьев на одной плоскости -->
-        <!-- Тип 1 -->
+      <!-- Trees -->
+        <!-- Type 1 -->
         <a-entity position="-26 0 -20">
           <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a-box>
-          <a-box class="leaves" position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a-box>
-          <a-box class="leaves" position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a.box>
+          <a-box position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a-box>
+          <a-box position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a.box>
           <a-box class="leaves" position="0 2 0" depth="3" height="2" width="3" color="#006400"></a-box>
           <a-box class="leaves" position="0 2 0" depth="4" height="2" width="4" color="#006400"></a-box>
           <a-box class="leaves" position="0 2 0" depth="5" height="2" width="5" color="#006400"></a.box>
@@ -116,8 +121,8 @@
 
         <a-entity position="4 0 -26">
           <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a-box>
-          <a-box class="leaves" position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a-box>
-          <a-box class="leaves" position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a.box>
+          <a-box position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a-box>
+          <a-box position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a.box>
           <a-box class="leaves" position="0 2 0" depth="3" height="2" width="3" color="#006400"></a.box>
           <a-box class="leaves" position="0 2 0" depth="4" height="2" width="4" color="#006400"></a.box>
           <a-box class="leaves" position="0 2 0" depth="5" height="2" width="5" color="#006400"></a.box>
@@ -126,10 +131,10 @@
         </a-entity>
 
 
-        <!-- Тип 2 -->
+        <!-- Type 2 -->
         <a-entity position="4 0 30">
           <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a-box>
-          <a-box class="leaves" position="0 4 0" depth="1" height="8" width="1" color="#8B4513"></a-box>
+          <a-box position="0 4 0" depth="1" height="8" width="1" color="#8B4513"></a-box>
           <a-box class="leaves" position="0 7 0" depth="3" height="6" width="3" color="#228B22"></a.box>
           <a-box class="leaves" position="0 6 0" depth="4" height="5" width="4" color="#228B22"></a.box>
           <a-box class="leaves" position="0 5 0" depth="5" height="5" width="5" color="#228B22"></a.box>
@@ -137,10 +142,10 @@
           <a-box class="leaves" position="0 3 0" depth="3" height="4" width="3" color="#228B22"></a.box>
         </a-entity>
 
-        <!-- Тип 3 -->
+        <!-- Type 3 -->
         <a-entity position="6 0 -7">
           <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
-          <a-box class="leaves" position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
+          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
           <a-box class="leaves" position="0 2 0" depth="4" height="2" width="4" color="#2E8B57"></a.box>
           <a-box class="leaves" position="0 2 0" depth="5" height="2" width="5" color="#2E8B57"></a.box>
           <a-box class="leaves" position="0 2 0" depth="6" height="2" width="6" color="#2E8B57"></a.box>
@@ -148,10 +153,10 @@
           <a-box class="leaves" position="0 2 0" depth="4" height="2" width="4" color="#2E8B57"></a.box>
         </a-entity>
 
-        <!-- Тип 3 -->
+        <!-- Type 3 -->
         <a-entity position="-5 0 -16">
           <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
-          <a-box class="leaves" position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
+          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
           <a-box class="leaves" position="0 1 0" depth="4" height="1" width="4" color="#2E8B57"></a.box>
           <a-box class="leaves" position="0 1 0" depth="5" height="1" width="5" color="#2E8B57"></a.box>
           <a-box class="leaves" position="0 1 0" depth="6" height="1" width="6" color="#2E8B57"></a.box>
@@ -159,10 +164,10 @@
           <a-box class="leaves" position="0 1 0" depth="4" height="1" width="4" color="#2E8B57"></a.box>
         </a-entity>
 
-        <!-- Тип 4 -->
+        <!-- Type 4 -->
         <a-entity position="30 0 -4">
           <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
-          <a-box class="leaves" position="0 5 0" depth="1" height="12" width="1" color="#8B4513"></a.box>
+          <a-box position="0 5 0" depth="1" height="12" width="1" color="#8B4513"></a.box>
           <a-box class="leaves" position="0 9 0" depth="4" height="9" width="4" color="#2E8B57"></a.box>
           <a-box class="leaves" position="0 8 0" depth="5" height="8" width="5" color="#2E8B57"></a.box>
           <a-box class="leaves" position="0 7 0" depth="6" height="7" width="6" color="#2E8B57"></a.box>
@@ -170,10 +175,10 @@
           <a-box class="leaves" position="0 5 0" depth="4" height="5" width="4" color="#2E8B57"></a.box>
         </a-entity>
 
-        <!-- Тип 4 -->
+        <!-- Type 4 -->
         <a-entity position="-12 0 -12">
           <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
-          <a-box class="leaves" position="0 5 0" depth="1" height="12" width="1" color="#8B4513"></a.box>
+          <a-box position="0 5 0" depth="1" height="12" width="1" color="#8B4513"></a.box>
           <a-box class="leaves" position="0 9 0" depth="4" height="9" width="4" color="#2E8B57"></a.box>
           <a-box class="leaves" position="0 8 0" depth="5" height="8" width="5" color="#2E8B57"></a.box>
           <a-box class="leaves" position="0 7 0" depth="6" height="7" width="6" color="#2E8B57"></a.box>
@@ -182,7 +187,7 @@
         </a-entity>
 
 
-        <!-- Тип 5 -->
+        <!-- Type 5 -->
         <a-entity position="40 0 25">
           <a-box position="0 2.5 0" depth="1" height="6" width="1" color="#8B4513"></a.box>
           <a-box class="leaves" position="0 5.5 0" depth="3" height="5" width="3" color="#006400"></a.box>
@@ -191,7 +196,7 @@
           <a-box class="leaves" position="0 2.5 0" depth="4" height="4" width="4" color="#006400"></a.box>
         </a-entity>
 
-        <!-- Тип 5 -->
+        <!-- Type 5 -->
         <a-entity position="15 0 7">
           <a-box position="0 2.5 0" depth="1" height="6" width="1" color="#8B4513"></a.box>
           <a-box class="leaves" position="0 5.5 0" depth="3" height="5" width="3" color="#006400"></a.box>
@@ -200,7 +205,7 @@
           <a-box class="leaves" position="0 2.5 0" depth="4" height="4" width="4" color="#006400"></a.box>
         </a-entity>
 
-        <!-- Тип 6 -->
+        <!-- Type 6 -->
         <a-entity position="15 0 -12">
           <a-box position="0 3 0" depth="2" height="7" width="2" color="#8B4513"></a.box>
           <a-box class="leaves" position="0 6.5 0" depth="6" height="5" width="6" color="#228B22"></a.box>
@@ -209,7 +214,7 @@
           <a-box class="leaves" position="0 3.5 0" depth="3" height="8" width="3" color="#228B22"></a.box>
         </a-entity>
 
-        <!-- Тип 6 -->
+        <!-- Type 6 -->
         <a-entity position="-12 0 4">
           <a-box position="0 3 0" depth="2" height="7" width="2" color="#8B4513"></a.box>
           <a-box class="leaves" position="0 6.5 0" depth="6" height="5" width="6" color="#228B22"></a.box>
@@ -219,37 +224,37 @@
         </a-entity>
       </a-entity>
 
-  <!-- Первая коробка с кнопками -->
+  <!-- First box -->
   <a-box position="0 0 -5" width="4" height="2" depth="2" color="#333"></a-box>
 
-  <!-- Кнопка 1: Ночь -->
+  <!-- Button 1: Night -->
   <a-box position="-1.25 1.25 -5" width="1" height="0.5" depth="0.5" color="#000" id="nightButton" class="button"></a-box>
   <a-text value="Night" align="center" position="-1.25 1.4 -4.7" width="2"></a-text>
   
-  <!-- Кнопка 2: День -->
+  <!-- Button 2: Day -->
   <a-box position="0 1.25 -5" width="1" height="0.5" depth="0.5" color="#00A3FF" id="dayButton" class="button"></a-box>
   <a-text value="Day" align="center" position="0 1.4 -4.7" width="2"></a-text>
   
-  <!-- Кнопка 3: Градиент -->
+  <!-- Button 3: Gradient -->
   <a-box position="1.25 1.25 -5" width="1" height="0.5" depth="0.5" color="#32CD32" id="customButton" class="button"></a-box>
   <a-text value="Gradient" align="center" position="1.25 1.4 -4.7" width="2"></a-text>
 
-  <!-- Вторая коробка с четырьмя кнопками -->
+  <!-- Second Box -->
   <a-box position="6 0 0" width="6" height="2" depth="2" color="#333" rotation="0 90 0"></a-box>
 
-<!-- Кнопка 1: Осень -->
+<!-- Button 1: Autumn -->
       <a-box position="6 1.25 1.7" width="1" height="0.5" depth="0.5" rotation="0 90 0" color="#FF8C00" id="autumnButton" class="button"></a-box>
       <a-text value="Autumn" align="center" position="5.75 1.3 1.7" rotation="0 270 0" width="2"></a-text>
 
-      <!-- Кнопка 2: Весна -->
+      <!-- Button 2: Spring -->
       <a-box position="6 1.25 0.55" width="1" height="0.5" depth="0.5" rotation="0 90 0" color="#00FF7F" id="springButton" class="button"></a-box>
       <a-text value="Spring" align="center" position="5.75 1.3 0.55" rotation="0 270 0" width="2"></a-text>
 
-      <!-- Кнопка 3: Лето -->
+      <!-- Button 3: Summer -->
       <a-box position="6 1.25 -0.55" width="1" height="0.5" depth="0.5" rotation="0 90 0" color="#228B22" id="summerButton" class="button"></a-box>
       <a-text value="Summer" align="center" position="5.75 1.3 -0.52" rotation="0 270 0" width="2"></a-text>
 
-      <!-- Кнопка 4: Зима -->
+      <!-- Button 4: Winter -->
       <a-box position="6 1.25 -1.7" width="1" height="0.5" depth="0.5" rotation="0 90 0" color="#FFFFFF" id="winterButton" class="button"></a-box>
       <a-text value="Winter" align="center" color="#000" position="5.75 1.3 -1.7" rotation="0 270 0" width="2"></a-text>
 
