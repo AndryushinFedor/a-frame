@@ -38,21 +38,31 @@
             isGradientActive = !isGradientActive;  // Переключить состояние градиента
           });
 
+          // Функция для генерации случайного цвета на основе базового цвета
+          function getRandomColor(baseColor) {
+            let colorVariation = 30; // Варьировать цвет на ±30 для каждого канала RGB
+            let base = parseInt(baseColor.slice(1), 16);
+            let r = Math.min(255, Math.max(0, (base >> 16) + Math.floor(Math.random() * colorVariation * 2) - colorVariation));
+            let g = Math.min(255, Math.max(0, ((base >> 8) & 0xFF) + Math.floor(Math.random() * colorVariation * 2) - colorVariation));
+            let b = Math.min(255, Math.max(0, (base & 0xFF) + Math.floor(Math.random() * colorVariation * 2) - colorVariation));
+            return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
+          }
+
           // Сезонные кнопки
           document.querySelector('#autumnButton').addEventListener('click', function () {
-            leaves.forEach(leaf => leaf.setAttribute('color', '#FF8C00'));  // Осень: Оранжевый
+            leaves.forEach(leaf => leaf.setAttribute('color', getRandomColor('#FF8C00')));  // Осень: Рандомный оттенок оранжевого
           });
 
           document.querySelector('#winterButton').addEventListener('click', function () {
-            leaves.forEach(leaf => leaf.setAttribute('color', '#FFFFFF'));  // Зима: Белый
+            leaves.forEach(leaf => leaf.setAttribute('color', getRandomColor('#FFFFFF')));  // Зима: Рандомный оттенок белого
           });
 
           document.querySelector('#springButton').addEventListener('click', function () {
-            leaves.forEach(leaf => leaf.setAttribute('color', '#00FF7F'));  // Весна: Ярко-зеленый
+            leaves.forEach(leaf => leaf.setAttribute('color', getRandomColor('#00FF7F')));  // Весна: Рандомный оттенок ярко-зеленого
           });
 
           document.querySelector('#summerButton').addEventListener('click', function () {
-            leaves.forEach(leaf => leaf.setAttribute('color', '#228B22'));  // Лето: Зеленый
+            leaves.forEach(leaf => leaf.setAttribute('color', getRandomColor('#228B22')));  // Лето: Рандомный оттенок зеленого
           });
 
           document.querySelectorAll('.button').forEach(button => {
@@ -213,11 +223,11 @@
   <a-box position="0 0 -5" width="4" height="2" depth="2" color="#333"></a-box>
 
   <!-- Кнопка 1: Ночь -->
-  <a-box position="-1.25 1.25 -5" width="1" height="0.5" depth="0.5" color="#1E90FF" id="nightButton" class="button"></a-box>
+  <a-box position="-1.25 1.25 -5" width="1" height="0.5" depth="0.5" color="#000" id="nightButton" class="button"></a-box>
   <a-text value="Night" align="center" position="-1.25 1.4 -4.7" width="2"></a-text>
   
   <!-- Кнопка 2: День -->
-  <a-box position="0 1.25 -5" width="1" height="0.5" depth="0.5" color="#FFD700" id="dayButton" class="button"></a-box>
+  <a-box position="0 1.25 -5" width="1" height="0.5" depth="0.5" color="#00A3FF" id="dayButton" class="button"></a-box>
   <a-text value="Day" align="center" position="0 1.4 -4.7" width="2"></a-text>
   
   <!-- Кнопка 3: Градиент -->
@@ -228,20 +238,20 @@
   <a-box position="6 0 0" width="6" height="2" depth="2" color="#333" rotation="0 90 0"></a-box>
 
 <!-- Кнопка 1: Осень -->
-      <a-box position="6 1.25 1.25" width="1" height="0.5" depth="0.5" color="#FF8C00" id="autumnButton" class="button"></a-box>
-      <a-text value="Autumn" align="center" position="6 1.4 1.55" width="2"></a-text>
+      <a-box position="6 1.25 1.7" width="1" height="0.5" depth="0.5" rotation="0 90 0" color="#FF8C00" id="autumnButton" class="button"></a-box>
+      <a-text value="Autumn" align="center" position="5.75 1.3 1.7" rotation="0 270 0" width="2"></a-text>
 
       <!-- Кнопка 2: Весна -->
-      <a-box position="6 1.25 0.25" width="1" height="0.5" depth="0.5" color="#00FF7F" id="springButton" class="button"></a-box>
-      <a-text value="Spring" align="center" position="6 1.4 0.55" width="2"></a-text>
+      <a-box position="6 1.25 0.55" width="1" height="0.5" depth="0.5" rotation="0 90 0" color="#00FF7F" id="springButton" class="button"></a-box>
+      <a-text value="Spring" align="center" position="5.75 1.3 0.55" rotation="0 270 0" width="2"></a-text>
 
       <!-- Кнопка 3: Лето -->
-      <a-box position="6 1.25 -0.75" width="1" height="0.5" depth="0.5" color="#228B22" id="summerButton" class="button"></a-box>
-      <a-text value="Summer" align="center" position="6 1.4 -0.45" width="2"></a-text>
+      <a-box position="6 1.25 -0.55" width="1" height="0.5" depth="0.5" rotation="0 90 0" color="#228B22" id="summerButton" class="button"></a-box>
+      <a-text value="Summer" align="center" position="5.75 1.3 -0.52" rotation="0 270 0" width="2"></a-text>
 
       <!-- Кнопка 4: Зима -->
-      <a-box position="6 1.25 -1.75" width="1" height="0.5" depth="0.5" color="#FFFFFF" id="winterButton" class="button"></a-box>
-      <a-text value="Winter" align="center" position="6 1.4 -1.45" width="2"></a-text>
+      <a-box position="6 1.25 -1.7" width="1" height="0.5" depth="0.5" rotation="0 90 0" color="#FFFFFF" id="winterButton" class="button"></a-box>
+      <a-text value="Winter" align="center" color="#000" position="5.75 1.3 -1.7" rotation="0 270 0" width="2"></a-text>
 
     </a-scene>
 
