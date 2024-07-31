@@ -2,36 +2,37 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Interactive Terrain with Buttons in A-Frame</title>
+    <title>Complex Minecraft-style Terrain with Buttons</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script>
       AFRAME.registerComponent('button-listener', {
         init: function () {
-          const dayButton = document.querySelector('#dayButton');
-          const nightButton = document.querySelector('#nightButton');
-          const customButton = document.querySelector('#customButton');
           const sky = document.querySelector('#sky');
 
-          dayButton.addEventListener('click', function () {
-            sky.setAttribute('color', '#87CEEB');  // Установить день
-            animateButton(dayButton);
+          document.querySelector('#nightButton').addEventListener('click', function () {
+            sky.setAttribute('color', '#000022');  // Ночь
           });
 
-          nightButton.addEventListener('click', function () {
-            sky.setAttribute('color', '#000022');  // Установить ночь
-            animateButton(nightButton);
+          document.querySelector('#dayButton').addEventListener('click', function () {
+            sky.setAttribute('color', '#87CEEB');  // День
           });
 
-          customButton.addEventListener('click', function () {
-            animateButton(customButton);  // Пока без действия
+          document.querySelectorAll('.button').forEach(button => {
+            button.addEventListener('mousedown', function () {
+              button.setAttribute('position', {
+                x: button.getAttribute('position').x,
+                y: parseFloat(button.getAttribute('position').y) - 0.05,
+                z: button.getAttribute('position').z
+              });
+            });
+            button.addEventListener('mouseup', function () {
+              button.setAttribute('position', {
+                x: button.getAttribute('position').x,
+                y: parseFloat(button.getAttribute('position').y) + 0.05,
+                z: button.getAttribute('position').z
+              });
+            });
           });
-
-          function animateButton(button) {
-            button.setAttribute('position', { x: button.getAttribute('position').x, y: 1.15, z: button.getAttribute('position').z });
-            setTimeout(() => {
-              button.setAttribute('position', { x: button.getAttribute('position').x, y: 1.25, z: button.getAttribute('position').z });
-            }, 200);
-          }
         }
       });
     </script>
@@ -40,7 +41,7 @@
     <a-scene button-listener>
       <!-- Камера с контроллерами движения и курсором -->
       <a-entity camera position="0 1.6 0" wasd-controls look-controls>
-        <a-cursor raycaster="objects: [data-raycastable]"></a-cursor>
+        <a-cursor></a-cursor>
       </a-entity>
       
       <!-- Небо -->
@@ -52,130 +53,138 @@
       <!-- Террейн -->
       <a-entity id="terrain">
 
+      <!-- Три типа деревьев на одной плоскости -->
         <!-- Тип 1 -->
         <a-entity position="-26 0 -20">
           <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a-box>
+          <a-box position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a-box>
           <a-box position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a.box>
-          <a-box position="0 2 0" depth="3" height="2" width="3" color="#006400"></a.box>
-          <a-box position="0 2 0" depth="4" height="2" width="4" color="#006400"></a.box>
+          <a-box position="0 2 0" depth="3" height="2" width="3" color="#006400"></a-box>
+          <a-box position="0 2 0" depth="4" height="2" width="4" color="#006400"></a-box>
           <a-box position="0 2 0" depth="5" height="2" width="5" color="#006400"></a.box>
           <a-box position="0 2 0" depth="4" height="2" width="4" color="#006400"></a.box>
           <a-box position="0 2 0" depth="3" height="2" width="3" color="#006400"></a.box>
         </a-entity>
 
         <a-entity position="4 0 -26">
-          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
+          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a-box>
+          <a-box position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a-box>
           <a-box position="0 2 0" depth="1" height="2" width="1" color="#8B4513"></a.box>
           <a-box position="0 2 0" depth="3" height="2" width="3" color="#006400"></a.box>
           <a-box position="0 2 0" depth="4" height="2" width="4" color="#006400"></a.box>
           <a-box position="0 2 0" depth="5" height="2" width="5" color="#006400"></a.box>
-          <a-box position="0 2 0" depth="4" height="2" width="4" color="#006400"></а.box>
-          <a-box position="0 2 0" depth="3" height="2" width="3" color="#006400"></а.box>
+          <a-box position="0 2 0" depth="4" height="2" width="4" color="#006400"></a.box>
+          <a-box position="0 2 0" depth="3" height="2" width="3" color="#006400"></a.box>
         </a-entity>
+
 
         <!-- Тип 2 -->
         <a-entity position="4 0 30">
-          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
-          <a-box position="0 4 0" depth="1" height="8" width="1" color="#8B4513"></a.box>
+          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a-box>
+          <a-box position="0 4 0" depth="1" height="8" width="1" color="#8B4513"></a-box>
           <a-box position="0 7 0" depth="3" height="6" width="3" color="#228B22"></a.box>
-          <a-box position="0 6 0" depth="4" height="5" width="4" color="#228B22"></а.box>
-          <a-box position="0 5 0" depth="5" height="5" width="5" color="#228B22"></а.box>
-          <a-box position="0 4 0" depth="4" height="4" width="4" color="#228B22"></а.box>
-          <a-box position="0 3 0" depth="3" height="4" width="3" color="#228B22"></а.box>
+          <a-box position="0 6 0" depth="4" height="5" width="4" color="#228B22"></a.box>
+          <a-box position="0 5 0" depth="5" height="5" width="5" color="#228B22"></a.box>
+          <a-box position="0 4 0" depth="4" height="4" width="4" color="#228B22"></a.box>
+          <a-box position="0 3 0" depth="3" height="4" width="3" color="#228B22"></a.box>
         </a-entity>
 
         <!-- Тип 3 -->
         <a-entity position="6 0 -7">
-          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></а.box>
-          <a-box position="0 1 0" depth="4" height="2" width="4" color="#2E8B57"></а.box>
-          <a-box position="0 2 0" depth="5" height="2" width="5" color="#2E8B57"></а.box>
-          <a-box position="0 2 0" depth="6" height="2" width="6" color="#2E8B57"></а.box>
-          <a-box position="0 2 0" depth="5" height="2" width="5" color="#2E8B57"></а.box>
-          <a-box position="0 2 0" depth="4" height="2" width="4" color="#2E8B57"></а.box>
+          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
+          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
+          <a-box position="0 2 0" depth="4" height="2" width="4" color="#2E8B57"></a.box>
+          <a-box position="0 2 0" depth="5" height="2" width="5" color="#2E8B57"></a.box>
+          <a-box position="0 2 0" depth="6" height="2" width="6" color="#2E8B57"></a.box>
+          <a-box position="0 2 0" depth="5" height="2" width="5" color="#2E8B57"></a.box>
+          <a-box position="0 2 0" depth="4" height="2" width="4" color="#2E8B57"></a.box>
         </a-entity>
 
         <!-- Тип 3 -->
         <a-entity position="-5 0 -16">
-          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></а.box>
-          <a-box position="0 1 0" depth="4" height="1" width="4" color="#2E8B57"></а.box>
-          <a-box position="0 1 0" depth="5" height="1" width="5" color="#2E8B57"></а.box>
-          <a-box position="0 1 0" depth="6" height="1" width="6" color="#2E8B57"></а.box>
-          <a-box position="0 1 0" depth="5" height="1" width="5" color="#2E8B57"></а.box>
-          <a-box position="0 1 0" depth="4" height="1" width="4" color="#2E8B57"></а.box>
+          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
+          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
+          <a-box position="0 1 0" depth="4" height="1" width="4" color="#2E8B57"></a.box>
+          <a-box position="0 1 0" depth="5" height="1" width="5" color="#2E8B57"></a.box>
+          <a-box position="0 1 0" depth="6" height="1" width="6" color="#2E8B57"></a.box>
+          <a-box position="0 1 0" depth="5" height="1" width="5" color="#2E8B57"></a.box>
+          <a-box position="0 1 0" depth="4" height="1" width="4" color="#2E8B57"></a.box>
         </a-entity>
 
         <!-- Тип 4 -->
-        <a-entity position="25 0 -20">
-          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></а.box>
-          <a-box position="0 5 0" depth="1" height="12" width="1" color="#8B4513"></а.box>
-          <a-box position="0 9 0" depth="4" height="9" width="4" color="#2E8B57"></а.box>
-          <a-box position="0 8 0" depth="5" height="8" width="5" color="#2E8B57"></а.box>
-          <a-box position="0 7 0" depth="6" height="7" width="6" color="#2E8B57"></а.box>
-          <a-box position="0 6 0" depth="5" height="6" width="5" color="#2E8B57"></а.box>
-          <a-box position="0 5 0" depth="4" height="5" width="4" color="#2E8B57"></а.box>
+        <a-entity position="30 0 -4">
+          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
+          <a-box position="0 5 0" depth="1" height="12" width="1" color="#8B4513"></a.box>
+          <a-box position="0 9 0" depth="4" height="9" width="4" color="#2E8B57"></a.box>
+          <a-box position="0 8 0" depth="5" height="8" width="5" color="#2E8B57"></a.box>
+          <a-box position="0 7 0" depth="6" height="7" width="6" color="#2E8B57"></a.box>
+          <a-box position="0 6 0" depth="5" height="6" width="5" color="#2E8B57"></a.box>
+          <a-box position="0 5 0" depth="4" height="5" width="4" color="#2E8B57"></a.box>
         </a-entity>
 
         <!-- Тип 4 -->
         <a-entity position="-12 0 -12">
-          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></а.box>
-          <a-box position="0 5 0" depth="1" height="12" width="1" color="#8B4513"></а.box>
-          <a-box position="0 9 0" depth="4" height="9" width="4" color="#2E8B57"></а.box>
-          <a-box position="0 8 0" depth="5" height="8" width="5" color="#2E8B57"></а.box>
-          <a-box position="0 7 0" depth="6" height="7" width="6" color="#2E8B57"></а.box>
-          <a-box position="0 6 0" depth="5" height="6" width="5" color="#2E8B57"></а.box>
-          <a-box position="0 5 0" depth="4" height="5" width="4" color="#2E8B57"></а.box>
+          <a-box position="0 1 0" depth="1" height="4" width="1" color="#8B4513"></a.box>
+          <a-box position="0 5 0" depth="1" height="12" width="1" color="#8B4513"></a.box>
+          <a-box position="0 9 0" depth="4" height="9" width="4" color="#2E8B57"></a.box>
+          <a-box position="0 8 0" depth="5" height="8" width="5" color="#2E8B57"></a.box>
+          <a-box position="0 7 0" depth="6" height="7" width="6" color="#2E8B57"></a.box>
+          <a-box position="0 6 0" depth="5" height="6" width="5" color="#2E8B57"></a.box>
+          <a-box position="0 5 0" depth="4" height="5" width="4" color="#2E8B57"></a.box>
         </a-entity>
+
 
         <!-- Тип 5 -->
         <a-entity position="40 0 25">
-          <a-box position="0 2.5 0" depth="1" height="6" width="1" color="#8B4513"></а.box>
-          <a-box position="0 5.5 0" depth="3" height="5" width="3" color="#006400"></а.box>
-          <a-box position="0 4.5 0" depth="4" height="4" width="4" color="#006400"></а.box>
-          <a-box position="0 3.5 0" depth="5" height="3" width="5" color="#006400"></а.box>
-          <a-box position="0 2.5 0" depth="4" height="4" width="4" color="#006400"></а.box>
+          <a-box position="0 2.5 0" depth="1" height="6" width="1" color="#8B4513"></a.box>
+          <a-box position="0 5.5 0" depth="3" height="5" width="3" color="#006400"></a.box>
+          <a-box position="0 4.5 0" depth="4" height="4" width="4" color="#006400"></a.box>
+          <a-box position="0 3.5 0" depth="5" height="3" width="5" color="#006400"></a.box>
+          <a-box position="0 2.5 0" depth="4" height="4" width="4" color="#006400"></a.box>
         </a-entity>
 
         <!-- Тип 5 -->
         <a-entity position="15 0 7">
-          <a-box position="0 2.5 0" depth="1" height="6" width="1" color="#8B4513"></а.box>
-          <a-box position="0 5.5 0" depth="3" height="5" width="3" color="#006400"></а.box>
-          <a-box position="0 4.5 0" depth="4" height="4" width="4" color="#006400"></а.box>
-          <a-box position="0 3.5 0" depth="5" height="3" width="5" color="#006400"></а.box>
-          <a-box position="0 2.5 0" depth="4" height="4" width="4" color="#006400"></а.box>
+          <a-box position="0 2.5 0" depth="1" height="6" width="1" color="#8B4513"></a.box>
+          <a-box position="0 5.5 0" depth="3" height="5" width="3" color="#006400"></a.box>
+          <a-box position="0 4.5 0" depth="4" height="4" width="4" color="#006400"></a.box>
+          <a-box position="0 3.5 0" depth="5" height="3" width="5" color="#006400"></a.box>
+          <a-box position="0 2.5 0" depth="4" height="4" width="4" color="#006400"></a.box>
         </a-entity>
 
         <!-- Тип 6 -->
-        <a-entity position="15 0 -14">
-          <a-box position="0 3 0" depth="2" height="7" width="2" color="#8B4513"></а.box>
-          <a-box position="0 6.5 0" depth="6" height="5" width="6" color="#228B22"></а.box>
-          <a-box position="0 5.5 0" depth="5" height="6" width="5" color="#228B22"></а.box>
-          <a-box position="0 4.5 0" depth="4" height="7" width="4" color="#228B22"></а.box>
-          <a-box position="0 3.5 0" depth="3" height="8" width="3" color="#228B22"></а.box>
+        <a-entity position="15 0 -12">
+          <a-box position="0 3 0" depth="2" height="7" width="2" color="#8B4513"></a.box>
+          <a-box position="0 6.5 0" depth="6" height="5" width="6" color="#228B22"></a.box>
+          <a-box position="0 5.5 0" depth="5" height="6" width="5" color="#228B22"></a.box>
+          <a-box position="0 4.5 0" depth="4" height="7" width="4" color="#228B22"></a.box>
+          <a-box position="0 3.5 0" depth="3" height="8" width="3" color="#228B22"></a.box>
         </a-entity>
 
         <!-- Тип 6 -->
         <a-entity position="-12 0 4">
-          <a-box position="0 3 0" depth="2" height="7" width="2" color="#8B4513"></а.box>
-          <a-box position="0 6.5 0" depth="6" height="5" width="6" color="#228B22"></а.box>
-          <a-box position="0 5.5 0" depth="5" height="6" width="5" color="#228B22"></а.box>
-          <a-box position="0 4.5 0" depth="4" height="7" width="4" color="#228B22"></а.box>
-          <a-box position="0 3.5 0" depth="3" height="8" width="3" color="#228B22"></а.box>
+          <a-box position="0 3 0" depth="2" height="7" width="2" color="#8B4513"></a.box>
+          <a-box position="0 6.5 0" depth="6" height="5" width="6" color="#228B22"></a.box>
+          <a-box position="0 5.5 0" depth="5" height="6" width="5" color="#228B22"></a.box>
+          <a-box position="0 4.5 0" depth="4" height="7" width="4" color="#228B22"></a.box>
+          <a-box position="0 3.5 0" depth="3" height="8" width="3" color="#228B22"></a.box>
         </a-entity>
-
       </a-entity>
 
-      <!-- Коробка -->
-      <a-box position="0 1 -5" width="2" height="1" depth="3" color="#333"></а.box>
+      <!-- Коробка с кнопками -->
+      <a-box position="0 0 -5" width="4" height="2" depth="2" color="#333"></a-box>
 
       <!-- Кнопка 1: Ночь -->
-      <a-box position="-0.7 1.25 -4.5" width="0.5" height="0.2" depth="0.5" color="#1E90FF" id="nightButton" data-raycastable></а.box>
+      <a-box position="-1.25 1.25 -5" width="1" height="0.5" depth="0.5" color="#1E90FF" id="nightButton" class="button"></a-box>
+      <a-text value="Night" align="center" position="-1.25 1.4 -4.7" width="2"></a-text>
       
       <!-- Кнопка 2: День -->
-      <a-box position="0 1.25 -4.5" width="0.5" height="0.2" depth="0.5" color="#FFD700" id="dayButton" data-raycastable></а.box>
+      <a-box position="0 1.25 -5" width="1" height="0.5" depth="0.5" color="#FFD700" id="dayButton" class="button"></a-box>
+      <a-text value="Day" align="center" position="0 1.4 -4.7" width="2"></a-text>
       
       <!-- Кнопка 3: Пока без действия -->
-      <a-box position="0.7 1.25 -4.5" width="0.5" height="0.2" depth="0.5" color="#32CD32" id="customButton" data-raycastable></а.box>
-
+      <a-box position="1.25 1.25 -5" width="1" height="0.5" depth="0.5" color="#32CD32" id="customButton" class="button"></a-box>
+      <a-text value="Custom" align="center" position="1.25 1.4 -4.7" width="2"></a-text>
     </a-scene>
   </body>
 </html>
